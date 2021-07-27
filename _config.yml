@@ -84,7 +84,7 @@ theme_mode: # [light|dark]
 img_cdn: ""
 
 # the avatar on sidebar, support local or CORS resources
-avatar: http://rankin.co.kr/site/787.jpg
+avatar: https://raw.githubusercontent.com/CorzaHorizon/corzahorizon.github.io/master/assets/img/avatar/787.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
