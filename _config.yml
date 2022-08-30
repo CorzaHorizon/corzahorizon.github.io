@@ -3,18 +3,17 @@
 # Import the theme
 theme: jekyll-theme-chirpy
 
-# Only if your site type is GitHub Project sites and doesn't have a custom domain,
-# change below value to '/projectname'.
+# Change the following value to '/PROJECT_NAME' ONLY IF your site type is GitHub Pages Project sites
+# and doesn't have a custom domain.
 baseurl: ""
 
-# The language of the site layout › http://www.lingoes.net/en/translator/langcode.htm
-# Go to folder '_data/locales' to check the available language options
-lang: ko
+# The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
+# If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
+# otherwise, the layout language will use the default value of 'en'.
+lang: ko-KR
 
-# The lang attribute of HTML › http://www.lingoes.net/en/translator/langcode.htm
-# We can specify a language different from the layout of the content.
-# If it is not assigned, the site will use the value of 'lang' instead.
-content_lang: ""
+# Additional parameters for datetime localization, optional. › https://github.com/iamkun/dayjs/tree/dev/src/locale
+prefer_datetime_locale:
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 timezone: Asia/Seoul
@@ -24,11 +23,10 @@ timezone: Asia/Seoul
 
 title: Corza Horizon # the main title
 
-tagline: 재미지게 공부하려고 만들어본 블로그 # it will display as the sub-title
+tagline: IT, Wow, Dev, Game, etc. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  님들도 jekyll로 블로그 만들어 보세요.
-  꿀잼이네요~ 히히히.
+  Corza Horizon - Rankin Blog
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://corzahorizon.github.io"
@@ -52,9 +50,10 @@ social:
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
 
-google_site_verification: google_meta_tag_verification # change to your verification string
+google_site_verification: # fill in to your verification string
 
 # ↑ --------------------------
+# The end of `jekyll-seo-tag` settings
 
 google_analytics:
   id: "G-HZR6BL2YMQ" # fill in your Google Analytics ID
@@ -81,17 +80,43 @@ theme_mode: # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: ""
+img_cdn: # 'https://raw.githubusercontent.com/cotes2020/chirpy-images/main'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://raw.githubusercontent.com/CorzaHorizon/corzahorizon.github.io/master/assets/img/avatar/787.jpg
+avatar: "https://raw.githubusercontent.com/CorzaHorizon/corzahorizon.github.io/master/assets/img/avatar/787.jpg"
 
 # boolean type, the global switch for ToC in posts.
 toc: true
 
-disqus:
-  comments: false # boolean type, the global switch for posts comments.
-  shortname: "" # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+comments:
+  active: utterances # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  # The active options are as follows:
+  disqus:
+    shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  # utterances settings › https://utteranc.es/
+  utterances:
+    repo: CorzaHorizon/comments # <gh-username>/<repo>
+    issue_term: pathname # < url | pathname | title | ...>
+  # Giscus options › https://giscus.app
+  giscus:
+    repo: # <gh-username>/<repo>
+    repo_id:
+    category:
+    category_id:
+    mapping: # optional, default to 'pathname'
+    input_position: # optional, default to 'bottom'
+    lang: # optional, default to the value of `site.lang`
+
+# Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
+assets:
+  self_host:
+    enabled: # boolean, keep empty means false
+    # specify the Jekyll environment, empty means both
+    # only works if `assets.self_host.enabled` is 'true'
+    env: # [development|production]
+
+pwa:
+  enabled: true # the option for PWA feature
 
 paginate: 10
 
@@ -134,7 +159,14 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-      dynamic_title: true # Hide title in mobile screens.
+  - scope:
+      path: assets/img/favicons
+    values:
+      swcache: true
+  - scope:
+      path: assets/js/dist
+    values:
+      swcache: true
 
 sass:
   style: compressed
@@ -152,12 +184,12 @@ exclude:
   - "*.gem"
   - "*.gemspec"
   - tools
-  - docs
   - README.md
+  - CHANGELOG.md
   - LICENSE
   - gulpfile.js
   - node_modules
-  - "*.json"
+  - package*.json
 
 jekyll-archives:
   enabled: [categories, tags]
@@ -167,6 +199,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-# Outdated configuration warning
-outdated: "-- Missing configuration options! --"
